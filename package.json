@@ -1,0 +1,139 @@
+{
+  "name": "codehue",
+  "displayName": "CodeHue",
+  "description": "Structure coloring + inline translated comments (no rules mapping) for TS/JS/TSX/JSX.",
+  "publisher": "codehue",
+  "version": "4.2.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DianaLeoTang/PrismJSX"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "images/icon.png",
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:javascript",
+    "onLanguage:typescriptreact",
+    "onLanguage:javascriptreact",
+    "onLanguage:vue",
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codehue.refresh",
+        "title": "CodeHue: Refresh Decorations"
+      },
+      {
+        "command": "codehue.clearCache",
+        "title": "CodeHue: Clear Translation Cache"
+      }
+    ],
+    "configuration": {
+      "title": "CodeHue",
+      "properties": {
+        "codehue.colorScheme": {
+          "type": "string",
+          "default": "vibrant",
+          "description": "颜色方案（自动适配亮色/暗色主题）",
+          "enum": [
+            "vibrant",
+            "soft",
+            "ocean",
+            "sunset",
+            "forest",
+            "neon"
+          ],
+          "enumDescriptions": [
+            "鲜艳多彩 - 高对比度，区分度极高（默认）",
+            "柔和淡雅 - 马卡龙色系，护眼舒适",
+            "海洋风格 - 蓝绿色系，清新自然",
+            "日落风格 - 暖色调，温暖活力",
+            "森林风格 - 绿色系，沉稳专注",
+            "霓虹风格 - 荧光色，炫酷科技感"
+          ]
+        },
+        "codehue.regionColor": {
+          "type": "string",
+          "default": "rgba(76, 175, 80, 0.12)",
+          "description": "Region 区域的背景颜色（例如：#A7FFEB）"
+        },
+        "codehue.enableSemanticComments": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用中文语义注释（显示在代码行尾）"
+        },
+        "codehue.customHookColors": {
+          "type": "array",
+          "default": [],
+          "description": "自定义 React Hooks 颜色配置",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string",
+                "description": "Hook 名称（如：useState, useEffect, useMemo, useCallback）"
+              },
+              "color": {
+                "type": "string",
+                "description": "颜色值（如：#FF8A65）"
+              }
+            },
+            "required": [
+              "tag",
+              "color"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "codehue.enableAITranslation": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用 AI 智能翻译（关闭后将显示原函数名）"
+        },
+        "codehue.aiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "AI 模型 API Key（支持所有主流 AI 提供商）"
+        },
+        "codehue.aiModelBaseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "AI 模型的完整 API 地址（留空将使用内置默认服务）"
+        },
+        "codehue.aiModelName": {
+          "type": "string",
+          "default": "",
+          "description": "AI 模型名称（留空将使用内置默认模型）\n\n自定义示例：\n- OpenAI: gpt-4, gpt-3.5-turbo\n- Claude: claude-3-sonnet-20240229\n- 通义千问: qwen-turbo, qwen-plus\n- DeepSeek: deepseek-chat, deepseek-coder\n- Kimi: moonshot-v1-8k, moonshot-v1-32k\n- Gemini: gemini-pro, gemini-pro-vision"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "release": "standard-version",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
+    "build": "tsc && node scripts/build.js",
+    "package": "npm run build && vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "standard-version": "^9.5.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^17.2.3"
+  }
+}
