@@ -1,0 +1,84 @@
+{
+  // CodeHue 配置示例
+  // 在调试模式下，这些配置会覆盖默认的颜色方案
+  
+  // 颜色方案
+  "codehue.colorScheme": "vibrant",
+  
+  // Region 区域配置
+  "codehue.regionColor": "#A7FFEB",
+  
+  // React Hooks 自定义颜色配置（JSON 数组格式）
+  "codehue.customHookColors": [
+    {
+      "tag": "useState",
+      "color": "#FF8AFF"
+    },
+    {
+      "tag": "useEffect", 
+      "color": "#A7FF00"
+    },
+    {
+      "tag": "useMemo",
+      "color": "#FFEB3B"
+    },
+    {
+      "tag": "useCallback",
+      "color": "#A5F3A5"
+    },
+    {
+      "tag": "useRef",
+      "color": "#FF6B6B"
+    },
+    {
+      "tag": "useContext",
+      "color": "#4ECDC4"
+    },
+    {
+      "tag": "useReducer",
+      "color": "#45B7D1"
+    },
+    {
+      "tag": "useLayoutEffect",
+      "color": "#96CEB4"
+    },
+    {
+      "tag": "useImperativeHandle",
+      "color": "#FFEAA7"
+    },
+    {
+      "tag": "useDebugValue",
+      "color": "#DDA0DD"
+    },
+    {
+      "tag": "useDeferredValue",
+      "color": "#98D8C8"
+    },
+    {
+      "tag": "useTransition",
+      "color": "#F7DC6F"
+    },
+    {
+      "tag": "useId",
+      "color": "#BB8FCE"
+    },
+    {
+      "tag": "useSyncExternalStore",
+      "color": "#85C1E9"
+    },
+    {
+      "tag": "useInsertionEffect",
+      "color": "#F8C471"
+    }
+  ],
+  
+  // 功能开关
+  "codehue.enableSemanticComments": true,
+  "codehue.enableAITranslation": false,
+  
+  // AI 配置（示例）
+  "codehue.aiApiKey": "",
+  "codehue.aiModelBaseUrl": "https://api.example.com/v1",
+  "codehue.aiModelName": "gpt-3.5-turbo"
+}
+
