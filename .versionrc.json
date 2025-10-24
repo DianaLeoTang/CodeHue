@@ -1,0 +1,22 @@
+{
+  "types": [
+    { "type": "feat", "section": "✨ 新功能" },
+    { "type": "fix", "section": "🐛 Bug 修复" },
+    { "type": "perf", "section": "⚡ 性能优化" },
+    { "type": "refactor", "section": "♻️ 代码重构" },
+    { "type": "docs", "section": "📝 文档更新" },
+    { "type": "style", "section": "💄 代码格式" },
+    { "type": "test", "section": "✅ 测试" },
+    { "type": "build", "section": "📦 构建系统" },
+    { "type": "ci", "section": "👷 CI 配置" },
+    { "type": "chore", "section": "🔧 其他更改" }
+  ],
+  "commitUrlFormat": "https://github.com/DianaLeoTang/PrismJSX/commit/{{hash}}",
+  "compareUrlFormat": "https://github.com/DianaLeoTang/PrismJSX/compare/{{previousTag}}...{{currentTag}}",
+  "issueUrlFormat": "https://github.com/DianaLeoTang/PrismJSX/issues/{{id}}",
+  "userUrlFormat": "https://github.com/{{user}}",
+  "releaseCommitMessageFormat": "chore(release): {{currentTag}}",
+  "issuePrefixes": ["#"],
+  "header": "# Changelog\n\nAll notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.\n"
+}
+
