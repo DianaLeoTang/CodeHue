@@ -28,6 +28,23 @@ export const COLOR_SCHEMES_LIGHT: Record<string, ColorSchemeMap> = {
     // 'useref': '#EC407A',           // 🔴 亮粉红 → 引用
     // 'usecontext': '#FFB74D',       // 🟠 亮橙 → 上下文
     
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
+    
     // === 低频 Hooks（复用相近色系）===
     // 'usereducer': '#FF7043',       // 亮橙红系（复用 useState 色系）
     // 'uselayouteffect': '#1E88E5',  // 亮蓝系（复用 useEffect 色系）
@@ -96,6 +113,23 @@ export const COLOR_SCHEMES_LIGHT: Record<string, ColorSchemeMap> = {
     // 'useref': '#F06292',           // 🔴 亮粉红 → 引用
     // 'usecontext': '#FFCC02',       // 🟠 亮浅橙 → 上下文
     
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
+    
     // === 低频 Hooks（复用相近色系）===
     // 'usereducer': '#FFA726',       // 亮橙色系（复用 useState 色系）
     // 'uselayouteffect': '#42A5F5',  // 亮蓝色系（复用 useEffect 色系）
@@ -145,6 +179,23 @@ export const COLOR_SCHEMES_LIGHT: Record<string, ColorSchemeMap> = {
     // 'useref': '#26A69A',           // 亮蓝绿 → 引用 （未使用）
     // 'usecontext': '#42A5F5',       // 亮靛蓝 → 上下文
     // 'usereducer': '#4FC3F7',       // 亮海蓝 → 状态管理
+    
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
     // 'uselayouteffect': '#4DD0E1',  // 亮青色 → 布局副作用
     // 'useimperativehandle': '#80CBC4', // 亮绿松石 → 句柄
     // 'usedebugvalue': '#7986CB',    // 亮靛 → 调试
@@ -187,6 +238,24 @@ export const COLOR_SCHEMES_LIGHT: Record<string, ColorSchemeMap> = {
     // 'useid': '#FFB74D',            // 亮琥珀 → ID （未使用）  
     // 'usesyncexternalstore': '#FFCA28', // 亮琥珀 → 外部同步 （未使用）  
     // 'useinsertioneffect': '#FF7043', // 亮橙红 → 插入副作用 （未使用）  
+    
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
+    
     'region': '#AED581',           // 亮橄榄绿 → 区域
     // 'component': '#A1887F',        // 亮棕色 → 组件 （未使用）  
     // 'handler': '#E57373',          // 亮红 → 事件处理 （未使用）  
@@ -221,6 +290,24 @@ export const COLOR_SCHEMES_LIGHT: Record<string, ColorSchemeMap> = {
     'useid': '#4DB6AC',            // 亮青绿 → ID
     'usesyncexternalstore': '#AED581', // 亮橄榄绿 → 外部同步
     'useinsertioneffect': '#4DB6AC', // 亮青绿 → 插入副作用
+    
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
+    
     'region': '#66BB6A',           // 亮墨绿 → 区域
     // 'component': '#9CCC65',        // 亮橄榄绿 → 组件
     // 'handler': '#C0CA33',          // 亮橄榄 → 事件处理
@@ -255,6 +342,24 @@ export const COLOR_SCHEMES_LIGHT: Record<string, ColorSchemeMap> = {
     'useid': '#18FFFF',            // 超亮荧光青 → ID
     'usesyncexternalstore': '#FFFF00', // 超亮荧光黄 → 外部同步
     'useinsertioneffect': '#40C4FF', // 超亮荧光蓝 → 插入副作用
+    
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
+    
     'region': '#69F0AE',           // 超亮荧光绿 → 区域
     // 'component': '#E040FB',        // 超亮荧光紫 → 组件
     // 'handler': '#FF5252',          // 超亮荧光红 → 事件处理
@@ -293,6 +398,24 @@ export const COLOR_SCHEMES_DARK: Record<string, ColorSchemeMap> = {
     'useid': '#B2DFDB',            // 超亮蓝绿 → ID
     'usesyncexternalstore': '#FFF176', // 超亮金黄 → 外部同步
     'useinsertioneffect': '#F8BBD9', // 超亮玫红 → 插入副作用
+    
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
+    
     // 'component': '#CE93D8',        // 超亮紫 → 组件
     // 'handler': '#F8BBD9',          // 超亮粉红 → 事件处理
     'default': '#FFCC02',          // 超亮橙 → 默认
@@ -326,6 +449,24 @@ export const COLOR_SCHEMES_DARK: Record<string, ColorSchemeMap> = {
     'useid': '#E0F2F1',            // 超淡雅薄荷绿 → ID
     'usesyncexternalstore': '#FFFDE7', // 超淡雅明黄 → 外部同步
     'useinsertioneffect': '#F8BBD9', // 超淡雅玫瑰粉 → 插入副作用
+    
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
+    
     // 'component': '#D1C4E9',        // 超淡雅淡紫蓝 → 组件
     // 'handler': '#FFCDD2',          // 超淡雅粉橙 → 事件处理
     'default': '#FFF3E0',          // 超淡雅米杏色 → 默认
@@ -359,6 +500,24 @@ export const COLOR_SCHEMES_DARK: Record<string, ColorSchemeMap> = {
     'useid': '#80DEEA',            // 超亮青 → ID
     'usesyncexternalstore': '#4DD0E1', // 超亮青 → 外部同步
     'useinsertioneffect': '#4DD0E1', // 超亮青 → 插入副作用
+    
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
+    
     'region': '#80CBC4',           // 超亮绿松石 → 区域
     // 'component': '#9FA8DA',        // 超亮靛蓝 → 组件
     // 'handler': '#80CBC4',          // 超亮绿松石 → 事件处理
@@ -393,6 +552,24 @@ export const COLOR_SCHEMES_DARK: Record<string, ColorSchemeMap> = {
     'useid': '#FFCC02',            // 超亮琥珀 → ID
     'usesyncexternalstore': '#FFECB3', // 超亮琥珀 → 外部同步
     'useinsertioneffect': '#FFAB91', // 超亮深橙 → 插入副作用
+    
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
+    
     'region': '#C8E6C9',           // 超亮橄榄绿 → 区域
     // 'component': '#D7CCC8',        // 超亮棕色 → 组件
     // 'handler': '#FFAB91',          // 超亮红 → 事件处理
@@ -427,6 +604,24 @@ export const COLOR_SCHEMES_DARK: Record<string, ColorSchemeMap> = {
     'useid': '#80CBC4',            // 超亮青绿 → ID
     'usesyncexternalstore': '#C8E6C9', // 超亮草绿 → 外部同步
     'useinsertioneffect': '#80CBC4', // 超亮青绿 → 插入副作用
+    
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
+    
     'region': '#A5D6A7',           // 超亮草绿 → 区域
     // 'component': '#C5E1A5',        // 超亮橄榄绿 → 组件
     // 'handler': '#DCE775',          // 超亮橄榄 → 事件处理
@@ -461,6 +656,24 @@ export const COLOR_SCHEMES_DARK: Record<string, ColorSchemeMap> = {
     'useid': '#84FFFF',            // 极亮青 → ID
     'usesyncexternalstore': '#FFFF8D', // 极亮黄 → 外部同步
     'useinsertioneffect': '#80D8FF', // 极亮蓝 → 插入副作用
+    
+    // === ahooks Hooks ===
+    'usememoizedfn': '#FF6B9D',       // 🌸 粉红 → 记忆化函数（最常用）
+    'usedebouncefn': '#9C88FF',       // 💜 紫色 → 防抖函数
+    'useasynceffect': '#4ECDC4',      // 🔷 青绿 → 异步副作用
+    'useupdateeffect': '#95E1D3',     // 🔷 浅青绿 → 更新副作用
+    'usegetstate': '#F38181',         // 🔴 浅红 → 获取状态
+    'usedebounceeffect': '#AA96DA',   // 💜 淡紫 → 防抖副作用
+    'usetrackedeffect': '#C7CEEA',     // 💙 淡蓝紫 → 追踪副作用
+    'useeventemitter': '#FFB6C1',      // 🌸 浅粉 → 事件发射器
+    'usesetstate': '#FFA07A',         // 🟠 浅橙 → 设置状态
+    'useboolean': '#98D8C8',          // 🔷 薄荷绿 → 布尔状态
+    'usedebounce': '#B19CD9',         // 💜 淡紫 → 防抖值
+    'useupdate': '#FFD93D',           // 🟡 亮黄 → 强制更新
+    'useunmount': '#6C5CE7',          // 💜 深紫 → 卸载回调
+    'uselatest': '#54A0FF',           // 🔵 亮蓝 → 最新值
+    'usedeepcompareeffect': '#48DBFB', // 🔵 天蓝 → 深度比较副作用
+    
     'region': '#A5F3A5',           // 极亮绿 → 区域
     // 'component': '#EA80FC',        // 极亮紫 → 组件
     // 'handler': '#FF8A80',          // 极亮红 → 事件处理
