@@ -15,6 +15,7 @@
 import * as vscode from 'vscode';
 import { COLOR_SCHEMES_LIGHT, COLOR_SCHEMES_DARK } from './colorSchemes';
 import { translateFunctionNameToChinese, translateFunctionNameToChineseSync, TranslationPriority } from './semanticTranslator';
+import { colorToHex, applyColorWithOpacity } from './colorUtils';
 import { 
   VueComponentType, 
   VueDecoratedItem,
@@ -71,25 +72,62 @@ function getColorScheme(): Record<string, string> {
   return baseScheme;
 }
 
-/**
- * 获取背景色装饰
- */
-function getBackgroundDecoration(color: string): vscode.TextEditorDecorationType {
-  const cacheKey = `${color}-vue-bg`;
 
+/**
+ * 获取Vue装饰器（支持两种显示模式：背景色和左侧条带）
+ * 复用 hooksDisplayMode 配置，与React保持一致
+ */
+function getVueDecoration(color: string, vueType: string): vscode.TextEditorDecorationType {
+  const config = vscode.workspace.getConfiguration('codehue');
+  const displayMode = config.get<string>('hooksDisplayMode', 'background');
+  const stripeWidth = config.get<string>('hooksStripeWidth', '3px');
+  
+  // 生成缓存键，包含颜色、模式和类型
+  const cacheKey = `${color}-${displayMode}-${stripeWidth}-vue-${vueType}`;
+  
   if (stripeTypeCache.has(cacheKey)) {
     return stripeTypeCache.get(cacheKey)!;
   }
-
-  const dt = vscode.window.createTextEditorDecorationType({
-    isWholeLine: true,
-    backgroundColor: color,
-    overviewRulerColor: color,
-    overviewRulerLane: vscode.OverviewRulerLane.Left,
-  });
-
+  
+  let dt: vscode.TextEditorDecorationType;
+  
+  if (displayMode === 'stripe') {
+    // 左侧条带模式 - 使用用户原始颜色
+    const finalColor = colorToHex(color);
+    dt = vscode.window.createTextEditorDecorationType({
+      isWholeLine: true,
+      borderStyle: 'solid',
+      borderColor: finalColor,
+      borderWidth: `0 0 0 ${stripeWidth}`,
+      overviewRulerColor: finalColor,
+      overviewRulerLane: vscode.OverviewRulerLane.Left,
+      rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
+    });
+  } else {
+    // 底色模式 - 转换为十六进制并应用透明度
+    const hexColor = colorToHex(color);
+    const finalColor = applyColorWithOpacity(hexColor, color, 0.9, 'Vue装饰');
+    
+    dt = vscode.window.createTextEditorDecorationType({
+      isWholeLine: true,
+      backgroundColor: finalColor,
+      overviewRulerColor: finalColor,
+      overviewRulerLane: vscode.OverviewRulerLane.Left,
+      rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
+    });
+  }
+  
   stripeTypeCache.set(cacheKey, dt);
   return dt;
+}
+
+/**
+ * 获取背景色装饰（已废弃，保留以兼容旧代码）
+ * @deprecated 请使用 getVueDecoration 替代
+ */
+function getBackgroundDecoration(color: string): vscode.TextEditorDecorationType {
+  // 为了向后兼容，默认使用背景色模式，但实际会读取配置
+  return getVueDecoration(color, 'default');
 }
 
 /**
@@ -441,7 +479,7 @@ export function applyVueDecorations(editor: vscode.TextEditor, items: VueDecorat
           finalColor = getRainbowColor(index);
         }
         
-        const dt = getBackgroundDecoration(finalColor);
+        const dt = getVueDecoration(finalColor, type);
         editor.setDecorations(dt, [range]);
       });
     } 
@@ -449,12 +487,12 @@ export function applyVueDecorations(editor: vscode.TextEditor, items: VueDecorat
     else if (type === 'vue-function') {
       ranges.forEach((range, index) => {
         const functionColor = getFunctionColor(index);
-        const dt = getBackgroundDecoration(functionColor);
+        const dt = getVueDecoration(functionColor, type);
         editor.setDecorations(dt, [range]);
       });
     } 
     else {
-      const dt = getBackgroundDecoration(color);
+      const dt = getVueDecoration(color, type);
       editor.setDecorations(dt, ranges);
     }
   }
