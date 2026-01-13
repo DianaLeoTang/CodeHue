@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { disposeFunctionDecorations, refreshFunctionDecorations } from './functionDecorator';
-import { applyRegionDecorations, disposeRegionDecorations,  onRegionsChanged } from './regionDecorator';
+import { applyRegionDecorations, disposeRegionDecorations, disposeRegionEmitter, onRegionsChanged } from './regionDecorator';
 import { clearTranslationCache, setTranslationCompleteCallback, initializeCache } from './semanticTranslator';
 import { applyHooksAndRegionsDecorations } from './hooksDecorator';
 import { applyVueDecorations, disposeVueDecorations } from './vueDecorator';
@@ -13,9 +13,23 @@ const MAX_FILE_LINES = 10000;
 // 上次处理的文档版本，用于避免重复处理
 let lastProcessedVersion = new Map<string, number>();
 
+// 判断是否是代码文件
+function isCodeFile(doc: vscode.TextDocument): boolean {
+  const codeLanguages = [
+    'javascript', 'typescript', 'javascriptreact', 'typescriptreact',
+    'vue'
+  ];
+  return codeLanguages.includes(doc.languageId);
+}
+
 // 应用所有装饰（force=true 时无视文档版本缓存，强制刷新）
 function applyAll(editor: vscode.TextEditor, force = false) {
   if (!editor || editor.document.isClosed) return;
+  
+  // 只处理代码文件
+  if (!isCodeFile(editor.document)) {
+    return;
+  }
   
   const docUri = editor.document.uri.toString();
   const docVersion = editor.document.version;
@@ -30,8 +44,13 @@ function applyAll(editor: vscode.TextEditor, force = false) {
     return;
   }
   
+  // 先清除所有装饰，避免叠加导致文本选择问题
+  disposeRegionDecorations();
+  disposeFunctionDecorations();
+  disposeVueDecorations();
+  
   // 先渲染 region（也会计算并发布 suppress 范围）
-  applyRegionDecorations(editor);
+  applyRegionDecorations(editor, force); // 🔥 传递 force 参数以强制重建装饰
   
   // 根据文件类型应用不同的装饰
   if (editor.document.languageId === 'vue') {
@@ -89,14 +108,14 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   // 首次启动对激活编辑器应用
-  if (vscode.window.activeTextEditor) {
+  if (vscode.window.activeTextEditor && isCodeFile(vscode.window.activeTextEditor.document)) {
     applyAll(vscode.window.activeTextEditor);
   }
 
   // 编辑器切换
   context.subscriptions.push(
     vscode.window.onDidChangeActiveTextEditor((ed) => {
-      if (ed) {
+      if (ed && isCodeFile(ed.document)) {
         applyAll(ed);
       }
     })
@@ -172,16 +191,21 @@ export function activate(context: vscode.ExtensionContext) {
       disposeAll();
     }
   });
-}
 
-// 🔥 新增：判断是否是代码文件
-function isCodeFile(doc: vscode.TextDocument): boolean {
-  const codeLanguages = [
-    'javascript', 'typescript', 'javascriptreact', 'typescriptreact',
-    'vue', 'python', 'java', 'cpp', 'c', 'csharp', 'go', 'rust', 'php',
-    'ruby', 'swift', 'kotlin', 'dart', 'scala', 'perl', 'r', 'lua'
-  ];
-  return codeLanguages.includes(doc.languageId);
+  // 配置变更时强制刷新可见代码编辑器，确保最新设置生效
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeConfiguration((event) => {
+      if (event.affectsConfiguration('codehue')) {
+      
+        disposeRegionDecorations();
+          vscode.window.visibleTextEditors.forEach(editor => {
+            if (isCodeFile(editor.document)) {
+              applyAll(editor, true);
+            }
+          });
+      }
+    })
+  );
 }
 
 // 清理所有资源
@@ -189,6 +213,7 @@ function disposeAll() {
   disposeFunctionDecorations();
   disposeRegionDecorations();
   disposeVueDecorations();
+  disposeRegionEmitter(); // 清理 EventEmitter，防止内存泄漏
 }
 
 // 停用扩展
