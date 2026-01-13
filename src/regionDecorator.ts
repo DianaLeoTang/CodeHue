@@ -1,7 +1,10 @@
 import * as vscode from 'vscode';
-import { publishExclusionRanges, getLastExclusionRanges } from './exclusionBus';
+import { publishExclusionRanges } from './exclusionBus';
+import { COLOR_SCHEMES_LIGHT, COLOR_SCHEMES_DARK } from './colorSchemes';
+import { colorToHex, applyColorWithOpacity } from './colorUtils';
 
 let regionDecorationType: vscode.TextEditorDecorationType | null = null;
+let lastRegionColor: string | null = null;
 let cachedRegions: vscode.Range[] = [];
 
 // 允许“行尾注释里的标记”，大小写不敏感
@@ -14,26 +17,88 @@ const REGION_CLOSE_RE = /\/\/\s*#endregion\b(?:\s+(.+?))?\s*$/i;
 const _regionEmitter = new vscode.EventEmitter<void>();
 export const onRegionsChanged = _regionEmitter.event;
 
+function isDarkTheme(): boolean {
+  const themeKind = vscode.window.activeColorTheme.kind;
+  return themeKind === vscode.ColorThemeKind.Dark || themeKind === vscode.ColorThemeKind.HighContrast;
+}
+
+let lastThemeKind: vscode.ColorThemeKind | null = null;
+
 // 仅左侧细条，不涂底色
 // 确保装饰类型
-function ensureDecorationType(): vscode.TextEditorDecorationType {
+let lastConfigString: string = '';
+
+
+function ensureDecorationType(forceRecreate: boolean = false): vscode.TextEditorDecorationType {
   const config = vscode.workspace.getConfiguration('codehue');
-  const regionColor = config.get<string>('regionColor', 'rgba(76, 175, 80, 0.12)');
+  const explicitRegionColor = config.get<string>('regionColor');
+  const regionDisplayMode = config.get<string>('regionDisplayMode', 'background'); // 'stripe' 或 'background'
+  const stripeWidth = config.get<string>('regionStripeWidth', '3px');
   
+  // 👇 生成配置指纹，包含所有影响颜色的因素
+  const currentConfigString = JSON.stringify({
+    regionColor: explicitRegionColor,
+    regionDisplayMode,
+    stripeWidth,
+    colorScheme: config.get<string>('colorScheme'),
+    themeKind: vscode.window.activeColorTheme.kind
+  });
   
-  // 如果配置改变，需要重新创建装饰类型
-  if (regionDecorationType) {
-    regionDecorationType.dispose();
-    regionDecorationType = null;
+  let rawColor = explicitRegionColor && explicitRegionColor.trim() !== ''
+    ? explicitRegionColor
+    : undefined;
+
+  if (!rawColor) {
+    const schemeName = config.get<string>('colorScheme', 'vibrant');
+    const schemes = isDarkTheme() ? COLOR_SCHEMES_DARK : COLOR_SCHEMES_LIGHT;
+    const scheme = schemes[schemeName] || schemes.vibrant;
+    rawColor = scheme['region'] || 'rgba(76, 175, 80, 0.12)';
   }
   
-  regionDecorationType = vscode.window.createTextEditorDecorationType({
-    isWholeLine: true,
-    backgroundColor: regionColor,  // 使用 regionColor 作为背景色
-    overviewRulerColor: regionColor,
-    overviewRulerLane: vscode.OverviewRulerLane.Right,
-  });
-  return regionDecorationType;
+  console.log('[CodeHue] 读取 regionColor 配置:', rawColor);
+  console.log('[CodeHue] 显示模式:', regionDisplayMode);
+  
+  // 👇 关键改动：配置指纹变化或强制重建时，重新创建
+  if (!regionDecorationType || lastConfigString !== currentConfigString || forceRecreate) {
+    console.log('[CodeHue] 重新创建装饰类型');
+    
+    if (regionDecorationType) {
+      regionDecorationType.dispose();
+    }
+    
+    if (regionDisplayMode === 'stripe') {
+      // 左侧条带模式 - 使用用户原始颜色
+      const finalColor = colorToHex(rawColor);
+      regionDecorationType = vscode.window.createTextEditorDecorationType({
+        isWholeLine: true,
+        borderStyle: 'solid',
+        borderColor: finalColor,
+        borderWidth: `0 0 0 ${stripeWidth}`,
+        overviewRulerColor: finalColor,
+        overviewRulerLane: vscode.OverviewRulerLane.Right,
+        rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
+      });
+    } else {
+      // 底色模式 - 转换为十六进制并应用透明度
+      const hexColor = colorToHex(rawColor);
+      const finalColor = applyColorWithOpacity(hexColor, rawColor, 0.9, '区域');
+      
+      console.log('[CodeHue] 格式化后的颜色:', finalColor);
+      
+      regionDecorationType = vscode.window.createTextEditorDecorationType({
+        isWholeLine: true,
+        backgroundColor: finalColor,
+        overviewRulerColor: finalColor,
+        overviewRulerLane: vscode.OverviewRulerLane.Right,
+        rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
+      });
+    }
+    
+    lastRegionColor = currentConfigString;
+    lastConfigString = currentConfigString;
+  }
+  
+  return regionDecorationType!;
 }
 
 // 统一把标签做“可宽松匹配”的规范化
@@ -139,9 +204,9 @@ function outermostOnly(ranges: vscode.Range[]): vscode.Range[] {
 }
 
 // 应用区域装饰
-export function applyRegionDecorations(editor: vscode.TextEditor) {
+export function applyRegionDecorations(editor: vscode.TextEditor, forceRecreate: boolean = false) {
   const doc = editor.document;
-  const dt = ensureDecorationType();
+  const dt = ensureDecorationType(forceRecreate); // 🔥 传递 forceRecreate 参数
   cachedRegions = parseRegions(doc);
 
   // 渲染左侧条
@@ -157,7 +222,14 @@ export function disposeRegionDecorations() {
     regionDecorationType.dispose();
     regionDecorationType = null;
   }
+  lastRegionColor = null;
+  lastConfigString = ''; // 🔥 清空配置指纹，确保配置变更时能重建装饰
   cachedRegions = [];
+}
+
+// 清理 EventEmitter（仅在扩展停用时调用）
+export function disposeRegionEmitter() {
+  _regionEmitter.dispose();
 }
 
 // // 获取区域抑制范围
